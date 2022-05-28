@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class MoradorController {
     private Morador mor;
-    private ArrayList<String[]> arrayMor = new ArrayList<String[]>();
+    private ArrayList<Morador> listaMorador = new ArrayList<Morador>();
     private MoradorDAO morDAO;
     private TelaConsultaMorador telaL;
     
@@ -27,18 +27,16 @@ public class MoradorController {
         this.telaL = telaL;
     }
     
-    public ArrayList<String[]> consulMorador(String nome){
+    public ArrayList<Morador> consulMorador(String nome){
         if (nome.length() >= 0 || nome != null || nome != ""){
             try{
                 mor = new Morador();
                 morDAO = new MoradorDAO();
-
-                mor.setNome(nome);
-
-                arrayMor = morDAO.connMorador(mor);
                 
-                if (arrayMor != null){
-                    return arrayMor;
+                listaMorador = morDAO.connMorador(nome);
+                
+                if (listaMorador != null){
+                    return listaMorador;
                 }
                 else{
                     return null;

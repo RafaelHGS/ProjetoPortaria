@@ -17,11 +17,11 @@ import portaria.view.TelaConsultaMorador;
 public class MoradorDAO {
     private ConexaoDAO connDAO;
     private Connection conn;
-    private ArrayList<String[]> moradores = new ArrayList<String[]>();
+    private ArrayList<Morador> moradores = new ArrayList<Morador>();
     private final String AUT_SQL = "select * from morador where nome_morador = ?";
 
     //connMorador, conn= conexão com BD. Classe usada para conectar Morador e consultar no BD
-    public ArrayList<String[]> connMorador(Morador mor){
+    public ArrayList<Morador> connMorador(String nome){
         try {
             //Chamando conexão
             connDAO = new ConexaoDAO();
@@ -29,29 +29,25 @@ public class MoradorDAO {
 
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(AUT_SQL);
-            PState.setString(1, mor.getNome());   //Pesquisando/consultando por nome
+            PState.setString(1, nome);   //Pesquisando/consultando por nome
             
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();
             
             //Verificando item da tabela do BD, se Existe
             while(rs.next()){
-                //Criando Dados morador
-                String[] dadosMorador = new String[8];
-                
-                //Verificando credenciais
-                if(mor.getNome().equals(rs.getString("nome_morador"))){
-
-                    //Obtendo valores da tabela do objeto criado;
-                    ResultSetMetaData rsMetaData = rs.getMetaData();
+                if(nome.equals(rs.getString("nome_morador"))){
+                    Morador mor = new Morador();
+                    mor.setId(rs.getInt("id_morador"));
+                    mor.setNome(rs.getString("nome_morador"));
+                    mor.setCPF(rs.getString("cpf_morador"));
+                    mor.setIdade(rs.getInt("idade_morador"));
+                    mor.setNumCondominio(rs.getInt("num_condominio"));
+                    mor.setNumBloco(rs.getInt("num_bloco"));
+                    mor.setVagaEstacionamento(rs.getBoolean("vaga_estacionamento"));
+                    mor.setDtCadastro(rs.getString("dt_cadastro"));
                     
-                    //Gerando Dados da coluna
-                    int contador = rsMetaData.getColumnCount(); //
-                    for(int i = 1; i<=contador; i++) {
-                        dadosMorador[i-1] = rs.getString(rsMetaData.getColumnName(i));   //Coleta de Dados
-                    }
-                    
-                    moradores.add(dadosMorador);
+                    moradores.add(mor);
                 }
             }
             
