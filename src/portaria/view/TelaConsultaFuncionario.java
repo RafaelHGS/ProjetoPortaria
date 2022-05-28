@@ -1,11 +1,20 @@
 
 package portaria.view;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import portaria.controller.FuncionarioController;
+import portaria.model.Funcionario;
+
 
 public class TelaConsultaFuncionario extends javax.swing.JFrame {
 
     private TelaCadastroFuncionario telaCadastroFuncionario;
     
+    private FuncionarioController funcController;
+    
+    private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
     public TelaConsultaFuncionario() {
         initComponents();
     }
@@ -35,6 +44,12 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
         jLabelNome.setToolTipText("Insira o nome ");
+
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
+            }
+        });
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonConsultar.setText("Consultar");
@@ -111,10 +126,46 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFuncionario
-       // JOptionPane.showMessageDialog(null, "Consulta de funcionário!");
+          funcController = new FuncionarioController(this);
+
+        //Realizando escrita na tabela de consulta
+        try {
+            //Recebendo Dados
+            ArrayList<Funcionario> listaTabela = funcController.consulFuncionario(jTextFieldNome.getText());
+
+            //Obtendo tabela e zerando
+            DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
+            dadosTabela.setRowCount(0);
+
+            //Escrevendo Dados na tabela
+            if (listaTabela != null) {
+                for (Funcionario func : listaTabela) {
+                    dadosTabela.addRow(new Object[] {func.getId(),
+                    func.getNome(),
+                    func.getCPF(),
+                    func.getIdade(),  
+                    func.getEmail(),
+                    func.getSenha(),
+                    func.getIsADM()});
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Morador não encontrado :)");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Impossível realizar consulta!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }//GEN-LAST:event_consultarFuncionario
 
-  
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    public void limpaCampos() {
+        jTextFieldNome.setText("");
+        jTextFieldNome.grabFocus();
+    }
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {

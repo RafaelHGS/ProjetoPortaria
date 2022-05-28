@@ -3,23 +3,19 @@ package portaria.dao;
 import portaria.model.Funcionario;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.util.ArrayList;
 import portaria.view.TelaPrincipalADM;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author Pichau
- */
+
 public class FuncionarioDAO {
 
     private ConexaoDAO connDAO;
     private Connection conn;
     private final String AUT_SQL = "select * from funcionario where email_funcionario = ?";
+    private final String CONSULTAR_FUNCIONARIO = "select * from funcionario where nome_funcionario = ?";
     private final String CADASTRAR_FUNCIONARIO = "insert into funcionario (nome_funcionario, cpf_funcionario, idade_funcionario, email_funcionario, senha_funcionario, is_adm) values(?, ?, ?, ?, ?, ?)";
-
+    private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    
     //connFuncionario, conn= conexão com BD. Classe usada para conectar funcionario e validar no BD
     public int connFuncionario(Funcionario funn) {
 
@@ -76,5 +72,47 @@ public class FuncionarioDAO {
             e.printStackTrace();
         }
     }
+    
+        public ArrayList<Funcionario> consultaFuncionario(String nome){
+        try {
+            //Chamando conexão
+            connDAO = new ConexaoDAO();
+            conn = connDAO.conectar();
+
+            //Fazendo consulta no BD
+            PreparedStatement PState = conn.prepareStatement(CONSULTAR_FUNCIONARIO);
+            PState.setString(1, nome);   //Pesquisando/consultando por nome
+            
+            //Resultado da Consulta no BD
+            ResultSet rs = PState.executeQuery();
+            
+            //Verificando item da tabela do BD, se Existe
+            while(rs.next()){
+                if(nome.equals(rs.getString("nome_funcionario"))){
+                    Funcionario func = new Funcionario();
+                    func.setId(rs.getInt("id_funcionario"));
+                    func.setNome(rs.getString("nome_funcionario"));
+                    func.setCPF(rs.getString("cpf_funcionario"));
+                    func.setIdade(rs.getInt("idade_funcionario"));  
+                    func.setEmail(rs.getString("email_funcionario"));
+                    func.setSenha(rs.getString("senha_funcionario"));
+                    func.setIsADM(rs.getBoolean("is_adm"));
+                    funcionarios.add(func);
+                }
+            }
+            
+            if(funcionarios.size() <= 0){
+                return null;
+            }
+            else{
+                return funcionarios;
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     
 }

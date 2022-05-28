@@ -15,15 +15,24 @@
             <file>file:/C:/Users/gabri/OneDrive/Documentos/Anhembi-TI/SOLUÇÕES%20COMPUTACIONAIS/Projetos%20Java/ProjetoPortaria/src/portaria/model/Funcionario.java</file>
             <file>file:/C:/Users/gabri/OneDrive/Documentos/Anhembi-TI/SOLUÇÕES%20COMPUTACIONAIS/Projetos%20Java/ProjetoPortaria/src/portaria/dao/ConexaoDAO.java</file>
         </group>
-        <group>
-            <file>file:/C:/Users/Pichau/Documents/NetBeansProjects/ProjetoPortaria/src/portaria/dao/ConexaoDAO.java</file>
-        </group>
         <group name="ProjetoPortaria">
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/dao/MoradorDAO.java</file>
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/controller/MoradorController.java</file>
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/view/TelaConsultaMorador.java</file>
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/model/Morador.java</file>
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/controller/FuncionarioController.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaLogin.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/dao/MoradorDAO.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaCadastroMorador.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/dao/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/controller/MoradorController.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaConsultaFuncionario.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/controller/FuncionarioController.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaCadastroLogMorador.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaCadastroFuncionario.java</file>
+            <file>file:/C:/Users/jlyon/Desktop/Nova%20pasta/ProjetoPortaria/src/portaria/view/TelaConsultaMorador.java</file>
         </group>
     </open-files>
 </project-private>

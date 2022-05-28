@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package portaria.controller;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import portaria.dao.FuncionarioDAO;
 import portaria.model.Funcionario;
+import portaria.view.TelaConsultaFuncionario;
 import portaria.view.TelaLogin;
 import portaria.view.TelaPrincipalADM;
 
@@ -17,11 +19,16 @@ public class FuncionarioController {
     private Funcionario funn;
     private FuncionarioDAO funnDAO;
     private TelaLogin telaL;
+    private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private TelaConsultaFuncionario telaFuncionario;
     
     //Construtores
     public FuncionarioController(){}
     public FuncionarioController(TelaLogin telaL){
         this.telaL = telaL;
+    }
+    public FuncionarioController(TelaConsultaFuncionario telaFuncionario){
+        this.telaFuncionario = telaFuncionario;
     }
     
     //Metodo para autenticar funcionario
@@ -81,6 +88,30 @@ public class FuncionarioController {
             }
         }
         return true;
+    }
+    
+    public ArrayList<Funcionario> consulFuncionario(String nome) {
+        if (nome.length() >= 0 || nome != null || nome != "") {
+            try {
+                funn = new Funcionario();
+                funnDAO = new FuncionarioDAO();
+
+                funcionarios = funnDAO.consultaFuncionario(nome);
+
+                if (funcionarios != null) {
+                    return funcionarios;
+                } else {
+                    return null;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro na Consulta", "Erro", JOptionPane.ERROR_MESSAGE);
+                telaFuncionario.limpaCampos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos Inválidas", "Erro", JOptionPane.ERROR_MESSAGE);
+            telaFuncionario.limpaCampos();
+        }
+        return null;
     }
     
 }
