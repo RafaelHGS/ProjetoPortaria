@@ -12,6 +12,8 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
 
     private TelaCadastroFuncionario telaFunc;
     private TelaCadastroMorador telaMor;
+    private TelaConsultaFuncionario telaCFun;
+    private TelaConsultaMorador telaCMor;
     
     public TelaPrincipalADM() {
         initComponents();
@@ -145,7 +147,9 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsMoradorActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        telaCMor = new TelaConsultaMorador(this);
+        telaCMor.setVisible(true);
     }//GEN-LAST:event_jButtonConsMoradorActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -166,7 +170,9 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadMorador1ActionPerformed
 
     private void jButtonConsFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsFuncActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        telaCFun = new TelaConsultaFuncionario(this);
+        telaCFun.setVisible(true);
     }//GEN-LAST:event_jButtonConsFuncActionPerformed
 
     /**

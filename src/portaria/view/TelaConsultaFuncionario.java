@@ -15,12 +15,18 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
     private FuncionarioController funcController;
     
     private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private TelaPrincipalADM telaADM;
     public TelaConsultaFuncionario() {
         initComponents();
     }
+    
+    public TelaConsultaFuncionario(TelaPrincipalADM telaADM){
+        this.telaADM = telaADM;
+        initComponents();
+    }
     public TelaConsultaFuncionario(TelaCadastroFuncionario telaCadastroFuncionario){
-    this.telaCadastroFuncionario = telaCadastroFuncionario;
-    initComponents();
+        this.telaCadastroFuncionario = telaCadastroFuncionario;
+        initComponents();
     }
  
     @SuppressWarnings("unchecked")

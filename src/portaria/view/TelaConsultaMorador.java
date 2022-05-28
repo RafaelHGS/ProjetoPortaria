@@ -10,13 +10,18 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
 
     private MoradorController morController;
     private TelaCadastroMorador telaCadastroMorador;
+    private TelaPrincipalADM telaADM;
 
     public TelaConsultaMorador() {
         initComponents();
     }
+    
+    public TelaConsultaMorador(TelaPrincipalADM telaADM) {
+        this.telaADM = telaADM;
+        initComponents();
+    }
 
     public TelaConsultaMorador(TelaCadastroMorador telaCadastroMorador) {
-
         this.telaCadastroMorador = telaCadastroMorador;
         initComponents();
     }
