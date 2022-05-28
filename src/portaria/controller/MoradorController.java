@@ -46,6 +46,7 @@ public class MoradorController {
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Erro na Consulta", "Erro", JOptionPane.ERROR_MESSAGE);
+                telaL.limpaCampos();
             }
         }
             else{

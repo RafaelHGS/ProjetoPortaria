@@ -62,5 +62,25 @@ public class FuncionarioController {
             JOptionPane.showMessageDialog(null, "Usuário Não Cadastrado no Sistema !!!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+        public boolean cadastrarFuncionario (String nome, int idade, String cpf, String email, String senha, boolean isADM) {
+         if (nome != null && nome.length() > 0 && idade > 0 && validarCPF(cpf) && email != null && email.length() > 0 && senha != null && senha.length() > 0) {
+             funn = new Funcionario(nome, cpf, idade, idade, email, senha, isADM);
+             funnDAO = new FuncionarioDAO();
+             funnDAO.cadastrarFuncionario(funn);
+             return true;
+         }
+         return false;
+    }
+    
+    public boolean validarCPF(String CPF) {
+        for (int i = 0; i < CPF.length(); i++) {
+            if (!Character.isDigit(CPF.charAt(i))) {
+                if (!(i == 3 || i == 7 || i == 11)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     
 }

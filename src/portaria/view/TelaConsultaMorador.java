@@ -169,6 +169,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
             if (listaTabela != null) {
                 for (var i = 0; i < listaTabela.size(); i++) {
                     dadosTabela.addRow(listaTabela.get(i));
+                this.limpaCampos();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Morador não encontrado :)");

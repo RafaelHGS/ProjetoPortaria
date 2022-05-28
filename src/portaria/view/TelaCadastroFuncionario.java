@@ -4,6 +4,9 @@
  */
 package portaria.view;
 
+import javax.swing.JOptionPane;
+import portaria.controller.FuncionarioController;
+
 /**
  *
  * @author gabri
@@ -13,6 +16,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form TelaCadastroADM2
      */
+    private FuncionarioController funnController;
     private TelaPrincipalADM telaPADM;
     
     public TelaCadastroFuncionario(TelaPrincipalADM telaPADM) {
@@ -49,7 +53,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         jComboBoxADM = new javax.swing.JComboBox<>();
         jSpinnerIdade = new javax.swing.JSpinner();
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
-        jButtonConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,7 +105,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         jLabelSenha.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelSenha.setText("Senha:");
 
-        jComboBoxADM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Não", "Sim" }));
+        jComboBoxADM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
         jComboBoxADM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxADMActionPerformed(evt);
@@ -115,14 +118,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFormattedTextFieldCPF.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
-        jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jButtonConsultar.setText("Consultar");
-        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrir_telaConsultaFuncionario(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,9 +132,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addComponent(jButtonLimpar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonConsultar)
-                        .addGap(12, 12, 12))
+                        .addGap(108, 108, 108))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -194,8 +187,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
@@ -223,19 +215,47 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String nome = jTextFieldNome.getText();
+        int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
+        String cpf = jFormattedTextFieldCPF.getText();
+        String email = jTextFieldEmail.getText();
+        String senha = jTextFieldSenha.getText();
+        boolean isADM = verificaADM(jComboBoxADM.getSelectedItem().toString());
+        
+        boolean sucesso;
+        try {
+            funnController = new FuncionarioController();
+            sucesso = funnController.cadastrarFuncionario(nome, idade, cpf, email, senha, isADM);
+            
+            if (sucesso) {
+                if (isADM) {
+                    JOptionPane.showMessageDialog(null, "Administrador cadastrado com sucesso");
+                    this.jButtonLimparActionPerformed(evt);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Atendente cadastrado com sucesso");
+                    this.jButtonLimparActionPerformed(evt);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Campos preenchidos incorretamente!");
+            }   
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro encontrado, tente novamente " + e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxADMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxADMActionPerformed
 
-    private void abrir_telaConsultaFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaFuncionario
-       TelaConsultaFuncionario telaConsultaFuncionario = new TelaConsultaFuncionario(this);
-       telaConsultaFuncionario.setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_abrir_telaConsultaFuncionario
-
+    private boolean verificaADM (String isADM) {
+        if (isADM.equals("Sim")) {
+           return true; 
+        }
+        return false;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -277,7 +297,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JComboBox<String> jComboBoxADM;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;

@@ -18,6 +18,7 @@ public class FuncionarioDAO {
     private ConexaoDAO connDAO;
     private Connection conn;
     private final String AUT_SQL = "select * from funcionario where email_funcionario = ?";
+    private final String CADASTRAR_FUNCIONARIO = "insert into funcionario (nome_funcionario, cpf_funcionario, idade_funcionario, email_funcionario, senha_funcionario, is_adm) values(?, ?, ?, ?, ?, ?)";
 
     //connFuncionario, conn= conexão com BD. Classe usada para conectar funcionario e validar no BD
     public int connFuncionario(Funcionario funn) {
@@ -54,4 +55,26 @@ public class FuncionarioDAO {
         }
         return -1;
     }
+    
+        // Método de cadastro de funcionário
+    public void cadastrarFuncionario(Funcionario funn) {
+        try {
+            //Chamando conexão
+            connDAO = new ConexaoDAO();
+            conn = connDAO.conectar();
+            
+            PreparedStatement pState = conn.prepareStatement(CADASTRAR_FUNCIONARIO);
+            pState.setString(1, funn.getNome());
+            pState.setString(2, funn.getCPF());
+            pState.setInt(3, funn.getIdade());
+            pState.setString(4, funn.getEmail());
+            pState.setString(5, funn.getSenha());
+            pState.setBoolean(6, funn.getIsADM());
+            pState.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
