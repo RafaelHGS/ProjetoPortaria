@@ -49,6 +49,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         jComboBoxADM = new javax.swing.JComboBox<>();
         jSpinnerIdade = new javax.swing.JSpinner();
         jFormattedTextFieldCPF = new javax.swing.JFormattedTextField();
+        jButtonConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,6 +116,14 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
         jFormattedTextFieldCPF.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButtonConsultar.setText("Consultar");
+        jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrir_telaConsultaFuncionario(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +137,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addComponent(jButtonLimpar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCancelar)
-                        .addGap(99, 99, 99))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonConsultar)
+                        .addGap(12, 12, 12))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -183,7 +194,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
@@ -217,6 +229,12 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private void jComboBoxADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxADMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxADMActionPerformed
+
+    private void abrir_telaConsultaFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaFuncionario
+       TelaConsultaFuncionario telaConsultaFuncionario = new TelaConsultaFuncionario(this);
+       telaConsultaFuncionario.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_abrir_telaConsultaFuncionario
 
     /**
      * @param args the command line arguments
@@ -259,6 +277,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JComboBox<String> jComboBoxADM;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;

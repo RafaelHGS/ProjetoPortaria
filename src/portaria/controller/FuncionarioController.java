@@ -29,10 +29,12 @@ public class FuncionarioController {
         if ((login.length() > 0) && (senha.length() > 0)){
             funn = new Funcionario();
             funnDAO = new FuncionarioDAO();
+            
             funn.setEmail(login);
             funn.setSenha(senha);
             
             int resultado = funnDAO.connFuncionario(funn);
+            
             ExibirTela(resultado);
             
         }

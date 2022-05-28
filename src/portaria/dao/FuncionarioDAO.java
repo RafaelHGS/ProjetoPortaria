@@ -1,6 +1,7 @@
 package portaria.dao;
 
 import portaria.model.Funcionario;
+import javax.swing.JOptionPane;
 import java.sql.*;
 import portaria.view.TelaPrincipalADM;
 
@@ -18,6 +19,7 @@ public class FuncionarioDAO {
     private Connection conn;
     private final String AUT_SQL = "select * from funcionario where email_funcionario = ?";
 
+    //connFuncionario, conn= conexão com BD. Classe usada para conectar funcionario e validar no BD
     public int connFuncionario(Funcionario funn) {
 
         //Conexão com BD
@@ -37,6 +39,7 @@ public class FuncionarioDAO {
             if (rs.next()) {
                 //Verificando autenticidade/paridade de crendenciais
                 if (funn.getSenha().equals(rs.getString("senha_funcionario"))) {
+                    //Verificando se é ADM
                     funn.setIsADM(rs.getBoolean("is_adm"));
                     if (funn.getIsADM() == true) {
                         return 1;
@@ -51,5 +54,4 @@ public class FuncionarioDAO {
         }
         return -1;
     }
-
 }

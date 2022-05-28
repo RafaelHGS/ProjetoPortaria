@@ -4,8 +4,7 @@
  */
 package portaria.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  *
@@ -14,9 +13,9 @@ import java.sql.SQLException;
 
 //Exemplo
 public class UsaPortaria {
+    String sql = "INSERT INTO cadastro(id,nome) VALUES (?,?)";
 
     public static void main(String[] args) throws SQLException {
-//        Connection conn = new ConexaoDAO().conectar();
-//        conn.close();
+
     }
 }

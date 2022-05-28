@@ -114,6 +114,9 @@
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Insira o e-mail"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSenhaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonAcessar">
       <Properties>

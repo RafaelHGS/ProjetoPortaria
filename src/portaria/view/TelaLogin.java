@@ -61,6 +61,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jTextFieldSenha.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextFieldSenha.setToolTipText("Insira o e-mail");
+        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSenhaActionPerformed(evt);
+            }
+        });
 
         jButtonAcessar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonAcessar.setText("Acessar");
@@ -125,11 +130,15 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
+    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
+
     
     public void limpaCampos(){
         jTextFieldEmail.setText("");
         jTextFieldEmail.grabFocus(); 
-        
+
         jTextFieldSenha.setText("");
     }
     
