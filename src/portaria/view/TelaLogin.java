@@ -4,7 +4,6 @@
  */
 package portaria.view;
 
-import javax.swing.JOptionPane;
 import portaria.controller.FuncionarioController;
 
 /**
@@ -36,8 +35,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelEmail = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelSenha = new javax.swing.JLabel();
-        jTextFieldSenha = new javax.swing.JTextField();
         jButtonAcessar = new javax.swing.JButton();
+        jPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,14 +58,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabelSenha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelSenha.setText("Insira a Senha");
 
-        jTextFieldSenha.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextFieldSenha.setToolTipText("Insira o e-mail");
-        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSenhaActionPerformed(evt);
-            }
-        });
-
         jButtonAcessar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -75,23 +66,25 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField.setToolTipText("Insira a senha");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 180, Short.MAX_VALUE)
                 .addComponent(jLabelLogin)
                 .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelEmail)
-                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                             .addComponent(jLabelSenha)
-                            .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPasswordField)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(jButtonAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -109,7 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabelSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jButtonAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(55, Short.MAX_VALUE))
@@ -122,7 +115,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
 
         funnController = new FuncionarioController(this);
-        funnController.autFuncionario(jTextFieldEmail.getText(), jTextFieldSenha.getText());
+        funnController.autFuncionario(jTextFieldEmail.getText(), new String(jPasswordField.getPassword()));
         
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
@@ -130,16 +123,12 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
-    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
-
     
     public void limpaCampos(){
         jTextFieldEmail.setText("");
         jTextFieldEmail.grabFocus(); 
-
-        jTextFieldSenha.setText("");
+        
+        jPasswordField.setText("");
     }
     
     
@@ -183,7 +172,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelSenha;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldSenha;
     // End of variables declaration//GEN-END:variables
 }
