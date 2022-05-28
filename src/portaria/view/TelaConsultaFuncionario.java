@@ -65,14 +65,14 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Idade", "CPF", "E-mail", "Administrador"
+                "ID", "Nome", "CPF", "Idade", "E-mail", "Administrador"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -83,7 +83,14 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableConsulta.setAlignmentX(0.0F);
+        jTableConsulta.setAlignmentY(0.0F);
         jScrollPane1.setViewportView(jTableConsulta);
+        if (jTableConsulta.getColumnModel().getColumnCount() > 0) {
+            jTableConsulta.getColumnModel().getColumn(0).setPreferredWidth(25);
+            jTableConsulta.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTableConsulta.getColumnModel().getColumn(3).setPreferredWidth(25);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,16 +147,16 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
                 for (Funcionario func : listaTabela) {
-                    dadosTabela.addRow(new Object[] {func.getId(),
+                    dadosTabela.addRow(new Object[] {
+                    func.getId(),
                     func.getNome(),
                     func.getCPF(),
                     func.getIdade(),  
                     func.getEmail(),
-                    func.getSenha(),
                     func.getIsADM()});
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Morador não encontrado :)");
+                JOptionPane.showMessageDialog(null, "Funcionário não encontrado :)");
             }
 
         } catch (Exception e) {

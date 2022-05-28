@@ -1,6 +1,8 @@
 
 package portaria.view;
 
+import javax.swing.SpinnerNumberModel;
+
 
 public class TelaCadastroMorador extends javax.swing.JFrame {
 
@@ -44,7 +46,7 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/porteiro.png"))); // NOI18N
-        jLabel1.setText("Cadastrar Morador");
+        jLabel1.setText("Cadastrar de Morador");
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome");
@@ -73,16 +75,19 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         jLabelIdade.setText("Idade");
 
         jSpinnerIdade.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jSpinnerIdade.setModel(new javax.swing.SpinnerNumberModel(16, 16, 90, 1));
 
         jLabelNumCond.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNumCond.setText("Número Condomínio");
 
         jSpinnerNumCond.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jSpinnerNumCond.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
 
         jLabelNumBloco.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNumBloco.setText("Número do Bloco");
 
         jSpinnerNumBloco.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jSpinnerNumBloco.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
         jLabelEstacionamento.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelEstacionamento.setText("Estacionamento");
@@ -200,7 +205,7 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
+                .addGap(177, 177, 177)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -232,9 +237,9 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldNome.setText("");
         jFormattedTextFieldCPF.setText("");
-        jSpinnerIdade.setValue(0);
-        jSpinnerNumBloco.setValue(0);
-        jSpinnerNumCond.setValue(0);
+        jSpinnerIdade.setModel(new SpinnerNumberModel(16, 16, 90, 1));
+        jSpinnerNumBloco.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+        jSpinnerNumCond.setModel(new SpinnerNumberModel(1, 1, 4, 1));
         jComboEstacionamento.setSelectedIndex(0);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 

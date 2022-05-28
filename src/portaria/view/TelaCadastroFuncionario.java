@@ -5,6 +5,7 @@
 package portaria.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.*;
 import portaria.controller.FuncionarioController;
 
 /**
@@ -58,7 +59,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/porteiro.png"))); // NOI18N
-        jLabel1.setText("Cadastro do Administrador");
+        jLabel1.setText("Cadastro de Funcionário");
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
@@ -111,6 +112,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 jComboBoxADMActionPerformed(evt);
             }
         });
+
+        jSpinnerIdade.setModel(new javax.swing.SpinnerNumberModel(16, 16, 90, 1));
+        jSpinnerIdade.setToolTipText("");
 
         try {
             jFormattedTextFieldCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -203,7 +207,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldNome.setText("");
-        jSpinnerIdade.setValue(0);
+        jSpinnerIdade.setModel(new SpinnerNumberModel(16, 16, 90, 1) );
         jFormattedTextFieldCPF.setText("");
         jTextFieldEmail.setText("");
         jTextFieldSenha.setText("");

@@ -29,11 +29,10 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JButton();
         jButtonCadFuncionario = new javax.swing.JButton();
-        jButtonConsADM = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButtonConsMorador = new javax.swing.JButton();
         jLabelConsultas = new javax.swing.JLabel();
-        jButtonConsAtendente = new javax.swing.JButton();
+        jButtonConsFunc = new javax.swing.JButton();
         jButtonCadMorador1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -58,8 +57,6 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
             }
         });
 
-        jButtonConsADM.setText("Administrador");
-
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setText("Cadastros");
 
@@ -73,7 +70,12 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
         jLabelConsultas.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabelConsultas.setText("Consultas");
 
-        jButtonConsAtendente.setText("Atendente");
+        jButtonConsFunc.setText("Funcionario");
+        jButtonConsFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsFuncActionPerformed(evt);
+            }
+        });
 
         jButtonCadMorador1.setText("Morador");
         jButtonCadMorador1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,31 +89,41 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCadMorador1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCadFuncionario))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabelConsultas)
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonConsMorador)
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonConsAtendente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jButtonConsADM)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addGap(204, 204, 204)
+                        .addComponent(jLabel3)))
+                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonCadMorador1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonCadFuncionario))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonConsMorador)
+                                .addGap(20, 20, 20)
+                                .addComponent(jButtonConsFunc))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabelConsultas))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(55, 55, 55)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -122,11 +134,10 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConsMorador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConsAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConsADM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(jButtonConsFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(jButtonSair, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,6 +164,10 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
         telaMor = new TelaCadastroMorador(this);
         telaMor.setVisible(true);
     }//GEN-LAST:event_jButtonCadMorador1ActionPerformed
+
+    private void jButtonConsFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsFuncActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConsFuncActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,8 +208,7 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadFuncionario;
     private javax.swing.JButton jButtonCadMorador1;
-    private javax.swing.JButton jButtonConsADM;
-    private javax.swing.JButton jButtonConsAtendente;
+    private javax.swing.JButton jButtonConsFunc;
     private javax.swing.JButton jButtonConsMorador;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;

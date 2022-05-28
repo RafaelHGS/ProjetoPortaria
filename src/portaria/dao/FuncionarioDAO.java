@@ -95,7 +95,6 @@ public class FuncionarioDAO {
                     func.setCPF(rs.getString("cpf_funcionario"));
                     func.setIdade(rs.getInt("idade_funcionario"));  
                     func.setEmail(rs.getString("email_funcionario"));
-                    func.setSenha(rs.getString("senha_funcionario"));
                     func.setIsADM(rs.getBoolean("is_adm"));
                     funcionarios.add(func);
                 }
