@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import portaria.controller.MoradorController;
+import portaria.model.Morador;
 
 public class TelaConsultaMorador extends javax.swing.JFrame {
 
@@ -159,7 +160,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         //Realizando escrita na tabela de consulta
         try {
             //Recebendo Dados
-            ArrayList<String[]> listaTabela = morController.consulMorador(jNome.getText());
+            ArrayList<Morador> listaTabela = morController.consulMorador(jNome.getText());
 
             //Obtendo tabela e zerando
             DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
@@ -167,9 +168,15 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
 
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
-                for (var i = 0; i < listaTabela.size(); i++) {
-                    dadosTabela.addRow(listaTabela.get(i));
-                this.limpaCampos();
+                for (Morador mor : listaTabela) {
+                    dadosTabela.addRow(new Object[] {mor.getId(),
+                    mor.getNome(),
+                    mor.getCPF(),
+                    mor.getIdade(),
+                    mor.getNumCondominio(),
+                    mor.getNumBloco(),
+                    mor.isVagaEstacionamento(),
+                    mor.getDtCadastro()});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Morador não encontrado :)");
