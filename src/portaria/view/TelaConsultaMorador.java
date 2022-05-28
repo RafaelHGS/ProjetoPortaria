@@ -37,6 +37,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         jButtonConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableConsulta = new javax.swing.JTable();
+        jButtonSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de morador");
@@ -137,6 +138,14 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButtonSair.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButtonSair.setText("Cancelar e Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairconsultarFuncionario(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,13 +154,19 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanelConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(325, 325, 325)
+                .addComponent(jButtonSair)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSair)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,6 +214,11 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jNomeActionPerformed
 
+    private void jButtonSairconsultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairconsultarFuncionario
+        this.dispose();
+        telaADM.setVisible(true);
+    }//GEN-LAST:event_jButtonSairconsultarFuncionario
+
     public void limpaCampos() {
         jNome.setText("");
         jNome.grabFocus();
@@ -215,6 +235,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JTextField jNome;

@@ -39,6 +39,7 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         jButtonConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableConsulta = new javax.swing.JTable();
+        jButtonSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de funcionario");
@@ -98,6 +99,14 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
             jTableConsulta.getColumnModel().getColumn(3).setPreferredWidth(25);
         }
 
+        jButtonSair.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButtonSair.setText("Cancelar e Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairconsultarFuncionario(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,6 +127,10 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
                         .addGap(215, 215, 215)
                         .addComponent(jLabel1)))
                 .addContainerGap(110, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonSair)
+                .addGap(316, 316, 316))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +144,9 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
                     .addComponent(jButtonConsultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSair)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,6 +190,12 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
+    private void jButtonSairconsultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairconsultarFuncionario
+        this.dispose();
+        telaADM.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonSairconsultarFuncionario
+
     public void limpaCampos() {
         jTextFieldNome.setText("");
         jTextFieldNome.grabFocus();
@@ -190,6 +211,7 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JScrollPane jScrollPane1;
