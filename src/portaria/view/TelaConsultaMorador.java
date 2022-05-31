@@ -11,8 +11,14 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
     private MoradorController morController;
     private TelaCadastroMorador telaCadastroMorador;
     private TelaPrincipalADM telaADM;
+    private boolean isADM;
 
     public TelaConsultaMorador() {
+        initComponents();
+    }
+    
+    public TelaConsultaMorador(boolean isADM) {
+        this.isADM = isADM;
         initComponents();
     }
     
@@ -139,7 +145,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         );
 
         jButtonSair.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButtonSair.setText("Cancelar e Sair");
+        jButtonSair.setText("Cancelar e Voltar");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairconsultarFuncionario(evt);
@@ -155,7 +161,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
                 .addComponent(jPanelConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(325, 325, 325)
+                .addGap(322, 322, 322)
                 .addComponent(jButtonSair)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

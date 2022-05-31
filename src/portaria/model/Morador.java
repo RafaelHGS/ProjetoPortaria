@@ -51,8 +51,8 @@ public class Morador extends Pessoa {
     public Morador() {
     }
 
-    public Morador(String nome, String CPF, int idade, int id, int numCondominio, int numBloco, boolean vagaEstacionamento, String dtCadastro) {
-        super(nome, CPF, idade, id);
+    public Morador(String nome, String CPF, int idade, int numCondominio, int numBloco, boolean vagaEstacionamento) {
+        super(nome, CPF, idade);
         this.numCondominio = numCondominio;
         this.numBloco = numBloco;
         this.vagaEstacionamento = vagaEstacionamento;

@@ -1,12 +1,16 @@
 
 package portaria.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import portaria.controller.MoradorController;
 
 
 public class TelaCadastroMorador extends javax.swing.JFrame {
 
     private TelaPrincipalADM telaADM;
+    private MoradorController morController;
+    
     
     public TelaCadastroMorador(TelaPrincipalADM telaADM) {
         this.telaADM = telaADM;
@@ -227,7 +231,32 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+        String nome = jTextFieldNome.getText();
+        String cpf = jFormattedTextFieldCPF.getText();
+        int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
+        int numCondominio = Integer.parseInt(jSpinnerNumCond.getValue().toString());
+        int numBloco = Integer.parseInt(jSpinnerNumBloco.getValue().toString());
+        boolean usaEst = verificaEst(jComboEstacionamento.getSelectedItem().toString());
+        
+        
+        boolean sucesso;
+        
+        try{
+            morController = new MoradorController();
+            sucesso = morController.cadastrarMorador(nome, cpf, idade, numCondominio, numBloco, usaEst);
+            
+            if (sucesso) {
+                JOptionPane.showMessageDialog(null, "Morador Cadastrado Com Sucesso!!");
+                this.jButtonLimparActionPerformed(evt);
+            } else {
+                JOptionPane.showMessageDialog(null, "Campos preenchidos incorretamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+                this.jButtonLimparActionPerformed(evt);
+            }   
+            
+        }
+         catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro encontrado, tente novamente " + e);
+        }  
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jFormattedTextFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFActionPerformed
@@ -255,6 +284,12 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_abrir_telaConsultaMorador
 
+    
+    private boolean verificaEst (String usaEst){
+        return usaEst.equals("Sim");
+    }
+
+    
     /**
      * @param args the command line arguments
      */

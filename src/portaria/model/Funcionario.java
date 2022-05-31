@@ -40,8 +40,8 @@ public class Funcionario extends Pessoa {
     
     public Funcionario(){}
     
-    public Funcionario(String nome, String CPF, int idade, int id, String email, String senha, Boolean isADM){
-        super(nome, CPF, idade, id);
+    public Funcionario(String nome, String CPF, int idade, String email, String senha, Boolean isADM){
+        super(nome, CPF, idade);
         this.email = email;
         this.senha = senha;
         this.isADM = isADM;

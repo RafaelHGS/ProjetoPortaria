@@ -54,4 +54,25 @@ public class MoradorController {
         return null;
     }
     
+    
+    public boolean cadastrarMorador (String nome, String CPF, int idade, int numCondominio, int numBloco, boolean vagaEstacionamento) {
+         if (nome != null && nome.length() > 0 && idade > 0 && numCondominio >0 && numBloco > 0) {
+             mor = new Morador(nome, CPF, idade, numCondominio, numBloco, vagaEstacionamento);
+             morDAO = new MoradorDAO();
+             morDAO.cadastrarMorador(mor);
+             return true;
+         }
+         return false;
+    }
+    
+    public boolean validarCPF(String CPF) {
+        for (int i = 0; i < CPF.length(); i++) {
+            if (!Character.isDigit(CPF.charAt(i))) {
+                if (!(i == 3 || i == 7 || i == 11)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

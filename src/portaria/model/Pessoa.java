@@ -14,6 +14,12 @@ public class Pessoa {
     
     public Pessoa(){}
     
+    public Pessoa(String nome, String CPF, int idade){
+        this.nome = nome;
+        this.CPF = CPF;
+        this.idade = idade;
+    }
+    
     public Pessoa(String nome, String CPF, int idade, int id){
         this.nome = nome;
         this.CPF = CPF;

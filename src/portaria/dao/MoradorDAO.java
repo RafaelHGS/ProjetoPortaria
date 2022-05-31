@@ -19,6 +19,7 @@ public class MoradorDAO {
     private Connection conn;
     private ArrayList<Morador> moradores = new ArrayList<Morador>();
     private final String AUT_SQL = "select * from morador where nome_morador = ?";
+    private final String CADASTRAR_MORADOR = "INSERT INTO morador(nome_morador, cpf_morador, idade_morador, num_condominio, num_bloco, vaga_estacionamento) VALUES(?, ?, ?, ?, ?, ?)";
 
     //connMorador, conn= conexão com BD. Classe usada para conectar Morador e consultar no BD
     public ArrayList<Morador> connMorador(String nome){
@@ -63,4 +64,29 @@ public class MoradorDAO {
         }
         return null;
     }
+    
+    
+    public void cadastrarMorador(Morador mor) {
+        try {
+            //Chamando conexão
+            connDAO = new ConexaoDAO();
+            conn = connDAO.conectar();
+            
+            //nome, CPF, idade, numCondominio, numBloco, vagaEstacionamento
+            
+            PreparedStatement pState = conn.prepareStatement(CADASTRAR_MORADOR);
+            pState.setString(1, mor.getNome());
+            pState.setString(2, mor.getCPF());
+            pState.setInt(3, mor.getIdade());
+            pState.setInt(4, mor.getNumCondominio());
+            pState.setInt(5, mor.getNumBloco());
+            pState.setBoolean(6, mor.isVagaEstacionamento());
+            
+            pState.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

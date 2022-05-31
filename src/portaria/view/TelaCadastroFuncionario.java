@@ -227,6 +227,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         boolean isADM = verificaADM(jComboBoxADM.getSelectedItem().toString());
         
         boolean sucesso;
+        
         try {
             funnController = new FuncionarioController();
             sucesso = funnController.cadastrarFuncionario(nome, idade, cpf, email, senha, isADM);
@@ -254,10 +255,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxADMActionPerformed
 
     private boolean verificaADM (String isADM) {
-        if (isADM.equals("Sim")) {
-           return true; 
-        }
-        return false;
+        return isADM.equals("Sim");
     }
     
     /**

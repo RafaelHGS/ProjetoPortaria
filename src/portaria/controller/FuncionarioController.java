@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import portaria.dao.FuncionarioDAO;
 import portaria.model.Funcionario;
 import portaria.view.TelaConsultaFuncionario;
+import portaria.view.TelaConsultaMorador;
 import portaria.view.TelaLogin;
 import portaria.view.TelaPrincipalADM;
 
@@ -21,6 +22,7 @@ public class FuncionarioController {
     private TelaLogin telaL;
     private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private TelaConsultaFuncionario telaFuncionario;
+    
     
     //Construtores
     public FuncionarioController(){}
@@ -55,23 +57,27 @@ public class FuncionarioController {
     public void ExibirTela(int resultado){
         if (resultado != -1){
             if(resultado == 1){
-                TelaPrincipalADM TelaADM = new TelaPrincipalADM();
+                TelaPrincipalADM telaADM = new TelaPrincipalADM();
                 
                 JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador :)");
                 telaL.dispose();
-                TelaADM.setVisible(true);
+                telaADM.setVisible(true);
                             }
             if(resultado == 0){
+                TelaConsultaMorador telaMor = new TelaConsultaMorador(false);
                 JOptionPane.showMessageDialog(null, "Seja bem vindo Atendente :)");
+                telaMor.setVisible(true);
+                
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Usuário Não Cadastrado no Sistema !!!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
         public boolean cadastrarFuncionario (String nome, int idade, String cpf, String email, String senha, boolean isADM) {
          if (nome != null && nome.length() > 0 && idade > 0 && validarCPF(cpf) && email != null && email.length() > 0 && senha != null && senha.length() > 0) {
-             funn = new Funcionario(nome, cpf, idade, idade, email, senha, isADM);
+             funn = new Funcionario(nome, cpf, idade, email, senha, isADM);
              funnDAO = new FuncionarioDAO();
              funnDAO.cadastrarFuncionario(funn);
              return true;
