@@ -17,7 +17,7 @@ public class MoradorDAO {
     private ConexaoDAO connDAO;
     private Connection conn;
     private ArrayList<Morador> moradores = new ArrayList<Morador>();
-    private final String AUT_SQL = "select * from morador where nome_morador = ?";
+    private final String AUT_SQL = "select * from morador where nome_morador like ? ";
     private final String CADASTRAR_MORADOR = "INSERT INTO morador(nome_morador, cpf_morador, idade_morador, num_condominio, num_bloco, vaga_estacionamento, dt_cadastro) VALUES(?, ?, ?, ?, ?, ?, ?)";
     private final String EXCLUIR_MORADOR = "DELETE FROM morador WHERE id_morador = ?";
 
@@ -30,14 +30,15 @@ public class MoradorDAO {
 
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(AUT_SQL);
-            PState.setString(1, nome);   //Pesquisando/consultando por nome
+            PState.setString(1, "%"+nome+"%");   //Pesquisando/consultando por nome
+            System.out.println(PState);
             
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();
             
             //Verificando item da tabela do BD, se Existe
             while(rs.next()){
-                if(nome.equals(rs.getString("nome_morador"))){
+                if(rs.getString("nome_morador").contains(nome)){
                     Morador mor = new Morador();
                     mor.setId(rs.getInt("id_morador"));
                     mor.setNome(rs.getString("nome_morador"));

@@ -13,7 +13,7 @@ public class FuncionarioDAO {
     private Connection conn;
     private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private final String AUT_SQL = "select * from funcionario where email_funcionario = ?";
-    private final String CONSULTAR_FUNCIONARIO = "select * from funcionario where nome_funcionario = ?";
+    private final String CONSULTAR_FUNCIONARIO = "select * from funcionario where nome_funcionario like ?";
     private final String CADASTRAR_FUNCIONARIO = "insert into funcionario (nome_funcionario, cpf_funcionario, idade_funcionario, email_funcionario, senha_funcionario, is_adm) values(?, ?, ?, ?, ?, ?)";
     private final String EXCLUIR_FUNCIONARIO = "DELETE FROM funcionario WHERE id_funcionario = ?";
 
@@ -83,14 +83,14 @@ public class FuncionarioDAO {
 
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(CONSULTAR_FUNCIONARIO);
-            PState.setString(1, nome);   //Pesquisando/consultando por nome
+            PState.setString(1, "%"+nome+"%");   //Pesquisando/consultando por nome
             
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();
             
             //Verificando item da tabela do BD, se Existe
             while(rs.next()){
-                if(nome.equals(rs.getString("nome_funcionario"))){
+                if(rs.getString("nome_funcionario").contains(nome)){
                     Funcionario func = new Funcionario();
                     func.setId(rs.getInt("id_funcionario"));
                     func.setNome(rs.getString("nome_funcionario"));
