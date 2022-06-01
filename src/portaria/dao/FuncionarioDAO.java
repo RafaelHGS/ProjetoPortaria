@@ -30,6 +30,7 @@ public class FuncionarioDAO {
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(AUT_SQL);
             PState.setString(1, funn.getEmail());   //Pesquisando/consultando por email
+            
 
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();

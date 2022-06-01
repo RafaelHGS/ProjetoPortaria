@@ -219,7 +219,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = jTextFieldNome.getText();
+        String nome = jTextFieldNome.getText().toUpperCase();
         int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
         String cpf = jFormattedTextFieldCPF.getText();
         String email = jTextFieldEmail.getText();

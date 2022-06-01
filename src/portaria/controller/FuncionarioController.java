@@ -29,6 +29,7 @@ public class FuncionarioController {
     public FuncionarioController(TelaLogin telaL){
         this.telaL = telaL;
     }
+    
     public FuncionarioController(TelaConsultaFuncionario telaFuncionario){
         this.telaFuncionario = telaFuncionario;
     }
@@ -58,15 +59,15 @@ public class FuncionarioController {
         if (resultado != -1){
             if(resultado == 1){
                 TelaPrincipalADM telaADM = new TelaPrincipalADM();
-                
                 JOptionPane.showMessageDialog(null, "Seja bem vindo Administrador :)");
                 telaL.dispose();
                 telaADM.setVisible(true);
                             }
             if(resultado == 0){
-                TelaConsultaMorador telaMor = new TelaConsultaMorador(false);
+                TelaConsultaMorador telaFunc = new TelaConsultaMorador();
                 JOptionPane.showMessageDialog(null, "Seja bem vindo Atendente :)");
-                telaMor.setVisible(true);
+                telaL.dispose();
+                telaFunc.setVisible(true);
                 
             }
         }

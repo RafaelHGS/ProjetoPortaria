@@ -31,7 +31,6 @@ public class MoradorDAO {
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(AUT_SQL);
             PState.setString(1, "%"+nome+"%");   //Pesquisando/consultando por nome
-            System.out.println(PState);
             
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();

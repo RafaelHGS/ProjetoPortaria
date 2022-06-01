@@ -231,7 +231,7 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        String nome = jTextFieldNome.getText();
+        String nome = jTextFieldNome.getText().toUpperCase();
         String cpf = jFormattedTextFieldCPF.getText();
         int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
         int numCondominio = Integer.parseInt(jSpinnerNumCond.getValue().toString());
@@ -279,7 +279,7 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelar1ActionPerformed
 
     private void abrir_telaConsultaMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaMorador
-        TelaConsultaMorador telaConsultaMorador = new TelaConsultaMorador(telaADM);
+        TelaConsultaMorador telaConsultaMorador = new TelaConsultaMorador(telaADM, true);
         telaConsultaMorador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_abrir_telaConsultaMorador

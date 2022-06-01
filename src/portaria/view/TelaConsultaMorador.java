@@ -20,18 +20,9 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         initComponents();
     }
 
-    public TelaConsultaMorador(boolean isADM) {
+    public TelaConsultaMorador(TelaPrincipalADM telaADM, boolean isADM) {
         this.isADM = isADM;
-        initComponents();
-    }
-
-    public TelaConsultaMorador(TelaPrincipalADM telaADM) {
         this.telaADM = telaADM;
-        initComponents();
-    }
-
-    public TelaConsultaMorador(TelaCadastroMorador telaCadastroMorador) {
-        this.telaCadastroMorador = telaCadastroMorador;
         initComponents();
     }
 
@@ -153,7 +144,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         );
 
         jButtonSair.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButtonSair.setText("Cancelar e Voltar");
+        jButtonSair.setText("Cancelar e Voltar/Sair");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSairMorador(evt);
@@ -169,7 +160,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
                 .addComponent(jPanelConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(322, 322, 322)
+                .addGap(290, 290, 290)
                 .addComponent(jButtonSair)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -194,7 +185,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         //Realizando escrita na tabela de consulta
         try {
             //Recebendo Dados
-            ArrayList<Morador> listaTabela = morController.consulMorador(jNome.getText());
+            ArrayList<Morador> listaTabela = morController.consulMorador(jNome.getText().toUpperCase());
 
             //Obtendo tabela e zerando
             DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
@@ -231,40 +222,49 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jNomeActionPerformed
 
     private void jButtonSairMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairMorador
-        this.dispose();
-        telaADM.setVisible(true);
+        if (this.isADM == true) {
+            this.dispose();
+            telaADM.setVisible(true);
+        } else {
+            Object[] opcoes = {"Sim", "Não"};
+            int opcao = JOptionPane.showOptionDialog(null, "Deseja Sair do Sistema ?", "Sair", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
+
+            if (opcao == 0) {
+                System.exit(0);
+            }
+        }
     }//GEN-LAST:event_jButtonSairMorador
 
     private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
-        if (evt.getClickCount() == 2) {
-            int idMorador = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
+        if (this.isADM == true) {
+            if (evt.getClickCount() == 2) {
+                int idMorador = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
 
-            boolean sucesso;
-            try {
-                Object[] opcoes = {"Sim", "Não"};
-                int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o morador ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
-                
-                if (opcao == 0) {
-                    morController = new MoradorController();
-                    sucesso = morController.excluirMorador(idMorador);
-                    
-                    if (sucesso) {
-                        JOptionPane.showMessageDialog(null, "Morador Exluído com Sucesso");
-                        DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
-                        dadosTabela.setRowCount(0);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
+                boolean sucesso;
+                try {
+                    Object[] opcoes = {"Sim", "Não"};
+                    int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o morador ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
 
+                    if (opcao == 0) {
+                        morController = new MoradorController();
+                        sucesso = morController.excluirMorador(idMorador);
+
+                        if (sucesso) {
+                            JOptionPane.showMessageDialog(null, "Morador Exluído com Sucesso");
+                            DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
+                            dadosTabela.setRowCount(0);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                        }
                     }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao Deletar Morador!", "Erro", JOptionPane.ERROR_MESSAGE);
+
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao Deletar Morador!", "Erro", JOptionPane.ERROR_MESSAGE);
-                
             }
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked
-   
-    
 
     public void limpaCampos() {
         jNome.setText("");

@@ -163,7 +163,7 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         //Realizando escrita na tabela de consulta
         try {
             //Recebendo Dados
-            ArrayList<Funcionario> listaTabela = funcController.consulFuncionario(jTextFieldNome.getText());
+            ArrayList<Funcionario> listaTabela = funcController.consulFuncionario(jTextFieldNome.getText().toUpperCase());
 
             //Obtendo tabela e zerando
             DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela

@@ -148,7 +148,7 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
 
     private void jButtonConsMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsMoradorActionPerformed
         this.dispose();
-        telaCMor = new TelaConsultaMorador(this);
+        telaCMor = new TelaConsultaMorador(this, true);
         telaCMor.setVisible(true);
     }//GEN-LAST:event_jButtonConsMoradorActionPerformed
 
