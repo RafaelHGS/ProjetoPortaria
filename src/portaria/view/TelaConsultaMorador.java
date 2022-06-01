@@ -156,7 +156,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         jButtonSair.setText("Cancelar e Voltar");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairconsultarFuncionario(evt);
+                jButtonSairMorador(evt);
             }
         });
 
@@ -230,10 +230,10 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jNomeActionPerformed
 
-    private void jButtonSairconsultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairconsultarFuncionario
+    private void jButtonSairMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairMorador
         this.dispose();
         telaADM.setVisible(true);
-    }//GEN-LAST:event_jButtonSairconsultarFuncionario
+    }//GEN-LAST:event_jButtonSairMorador
 
     private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
         if (evt.getClickCount() == 2) {

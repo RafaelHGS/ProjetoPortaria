@@ -279,7 +279,7 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelar1ActionPerformed
 
     private void abrir_telaConsultaMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrir_telaConsultaMorador
-        TelaConsultaMorador telaConsultaMorador = new TelaConsultaMorador(this);
+        TelaConsultaMorador telaConsultaMorador = new TelaConsultaMorador(telaADM);
         telaConsultaMorador.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_abrir_telaConsultaMorador

@@ -229,7 +229,7 @@
         <Property name="text" type="java.lang.String" value="Cancelar e Voltar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairconsultarFuncionario"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairMorador"/>
       </Events>
     </Component>
   </SubComponents>
