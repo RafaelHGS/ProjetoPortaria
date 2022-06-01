@@ -11,10 +11,12 @@ public class FuncionarioDAO {
 
     private ConexaoDAO connDAO;
     private Connection conn;
+    private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private final String AUT_SQL = "select * from funcionario where email_funcionario = ?";
     private final String CONSULTAR_FUNCIONARIO = "select * from funcionario where nome_funcionario = ?";
     private final String CADASTRAR_FUNCIONARIO = "insert into funcionario (nome_funcionario, cpf_funcionario, idade_funcionario, email_funcionario, senha_funcionario, is_adm) values(?, ?, ?, ?, ?, ?)";
-    private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private final String EXCLUIR_FUNCIONARIO = "DELETE FROM funcionario WHERE id_funcionario = ?";
+
     
     //connFuncionario, conn= conexão com BD. Classe usada para conectar funcionario e validar no BD
     public int connFuncionario(Funcionario funn) {
@@ -113,5 +115,20 @@ public class FuncionarioDAO {
         return null;
     }
     
-    
+    public boolean excluirFuncionario(int idFuncionario){
+        try {
+            //Chamando conexão
+            connDAO = new ConexaoDAO();
+            conn = connDAO.conectar();
+        
+            PreparedStatement pState = conn.prepareStatement(EXCLUIR_FUNCIONARIO);
+            pState.setInt(1, idFuncionario);
+            pState.executeUpdate();
+            return true;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

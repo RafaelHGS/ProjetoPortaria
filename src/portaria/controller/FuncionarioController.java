@@ -120,4 +120,13 @@ public class FuncionarioController {
         return null;
     }
     
+    
+    public boolean excluirFuncionario(int idMorador){
+        if(idMorador > 0){
+            funnDAO = new FuncionarioDAO();
+            return funnDAO.excluirFuncionario(idMorador);
+        }
+        return false;
+    }
+    
 }

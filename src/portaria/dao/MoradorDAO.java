@@ -19,6 +19,7 @@ public class MoradorDAO {
     private ArrayList<Morador> moradores = new ArrayList<Morador>();
     private final String AUT_SQL = "select * from morador where nome_morador = ?";
     private final String CADASTRAR_MORADOR = "INSERT INTO morador(nome_morador, cpf_morador, idade_morador, num_condominio, num_bloco, vaga_estacionamento, dt_cadastro) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    private final String EXCLUIR_MORADOR = "DELETE FROM morador WHERE id_morador = ?";
 
     //connMorador, conn= conexão com BD. Classe usada para conectar Morador e consultar no BD
     public ArrayList<Morador> connMorador(String nome){
@@ -86,6 +87,24 @@ public class MoradorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public boolean excluirMorador(int idMorador){
+        try {
+            //Chamando conexão
+            connDAO = new ConexaoDAO();
+            conn = connDAO.conectar();
+        
+            PreparedStatement pState = conn.prepareStatement(EXCLUIR_MORADOR);
+            pState.setInt(1, idMorador);
+            pState.executeUpdate();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
     
 }

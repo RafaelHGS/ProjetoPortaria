@@ -15,16 +15,16 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
     private boolean isADM;
 
     private static final SimpleDateFormat dateFormatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    
+
     public TelaConsultaMorador() {
         initComponents();
     }
-    
+
     public TelaConsultaMorador(boolean isADM) {
         this.isADM = isADM;
         initComponents();
     }
-    
+
     public TelaConsultaMorador(TelaPrincipalADM telaADM) {
         this.telaADM = telaADM;
         initComponents();
@@ -78,7 +78,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         jTableConsulta.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTableConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "CPF", "Idade", "NºCondomínio", "NºBloco", "Estacionamento ?", "D.Entrada"
@@ -97,6 +97,11 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableConsultaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableConsulta);
@@ -198,17 +203,16 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
                 for (Morador mor : listaTabela) {
-                    
-                    
-                    dadosTabela.addRow(new Object[] {
-                    mor.getId(),
-                    mor.getNome(),
-                    mor.getCPF(),
-                    mor.getIdade(),
-                    mor.getNumCondominio(),
-                    mor.getNumBloco(),
-                    mor.isVagaEstacionamento(),
-                    dateFormatBR.format(mor.getDtCadastro())});
+
+                    dadosTabela.addRow(new Object[]{
+                        mor.getId(),
+                        mor.getNome(),
+                        mor.getCPF(),
+                        mor.getIdade(),
+                        mor.getNumCondominio(),
+                        mor.getNumBloco(),
+                        mor.isVagaEstacionamento(),
+                        dateFormatBR.format(mor.getDtCadastro())});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Morador não encontrado :)");
@@ -230,6 +234,37 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         this.dispose();
         telaADM.setVisible(true);
     }//GEN-LAST:event_jButtonSairconsultarFuncionario
+
+    private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
+        if (evt.getClickCount() == 2) {
+            int idMorador = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
+
+            boolean sucesso;
+            try {
+                Object[] opcoes = {"Sim", "Não"};
+                int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o morador ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
+                
+                if (opcao == 0) {
+                    morController = new MoradorController();
+                    sucesso = morController.excluirMorador(idMorador);
+                    
+                    if (sucesso) {
+                        JOptionPane.showMessageDialog(null, "Morador Exluído com Sucesso");
+                        DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
+                        dadosTabela.setRowCount(0);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+                    }
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao Deletar Morador!", "Erro", JOptionPane.ERROR_MESSAGE);
+                
+            }
+        }
+    }//GEN-LAST:event_jTableConsultaMouseClicked
+   
+    
 
     public void limpaCampos() {
         jNome.setText("");

@@ -65,6 +65,16 @@ public class MoradorController {
          return false;
     }
     
+    
+    public boolean excluirMorador(int idMorador){
+        if(idMorador > 0){
+            morDAO = new MoradorDAO();
+            return morDAO.excluirMorador(idMorador);
+        }
+        return false;
+    }
+    
+    
     public boolean validarCPF(String CPF) {
         for (int i = 0; i < CPF.length(); i++) {
             if (!Character.isDigit(CPF.charAt(i))) {
