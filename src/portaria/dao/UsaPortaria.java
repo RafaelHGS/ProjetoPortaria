@@ -13,9 +13,9 @@ import java.sql.*;
 
 //Exemplo
 public class UsaPortaria {
-    String sql = "INSERT INTO cadastro(id,nome) VALUES (?,?)";
 
     public static void main(String[] args) throws SQLException {
-
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp.toString());
     }
 }

@@ -4,6 +4,7 @@
  */
 package portaria.model;
 
+import java.sql.*;
 /**
  *
  * @author Pichau
@@ -14,7 +15,7 @@ public class Morador extends Pessoa {
     private int numCondominio;
     private int numBloco;
     private boolean vagaEstacionamento;
-    private String dtCadastro;
+    private Timestamp dtCadastro;
 
     public int getNumCondominio() {
         return numCondominio;
@@ -40,11 +41,11 @@ public class Morador extends Pessoa {
         this.vagaEstacionamento = vagaEstacionamento;
     }
 
-    public String getDtCadastro() {
+    public Timestamp getDtCadastro() {
         return dtCadastro;
     }
 
-    public void setDtCadastro(String dtCadastro) {
+    public void setDtCadastro(Timestamp dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
     
@@ -56,7 +57,6 @@ public class Morador extends Pessoa {
         this.numCondominio = numCondominio;
         this.numBloco = numBloco;
         this.vagaEstacionamento = vagaEstacionamento;
-        this.dtCadastro = dtCadastro;
     }
 
     @Override

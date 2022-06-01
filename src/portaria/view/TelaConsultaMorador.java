@@ -1,5 +1,6 @@
 package portaria.view;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +14,8 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
     private TelaPrincipalADM telaADM;
     private boolean isADM;
 
+    private static final SimpleDateFormat dateFormatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    
     public TelaConsultaMorador() {
         initComponents();
     }
@@ -195,14 +198,17 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
                 for (Morador mor : listaTabela) {
-                    dadosTabela.addRow(new Object[] {mor.getId(),
+                    
+                    
+                    dadosTabela.addRow(new Object[] {
+                    mor.getId(),
                     mor.getNome(),
                     mor.getCPF(),
                     mor.getIdade(),
                     mor.getNumCondominio(),
                     mor.getNumBloco(),
                     mor.isVagaEstacionamento(),
-                    mor.getDtCadastro()});
+                    dateFormatBR.format(mor.getDtCadastro())});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Morador não encontrado :)");

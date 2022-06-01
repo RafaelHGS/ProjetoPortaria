@@ -7,8 +7,7 @@ package portaria.dao;
 import portaria.model.Morador;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import portaria.view.TelaConsultaMorador;
+
 
 /**
  *
@@ -19,7 +18,7 @@ public class MoradorDAO {
     private Connection conn;
     private ArrayList<Morador> moradores = new ArrayList<Morador>();
     private final String AUT_SQL = "select * from morador where nome_morador = ?";
-    private final String CADASTRAR_MORADOR = "INSERT INTO morador(nome_morador, cpf_morador, idade_morador, num_condominio, num_bloco, vaga_estacionamento) VALUES(?, ?, ?, ?, ?, ?)";
+    private final String CADASTRAR_MORADOR = "INSERT INTO morador(nome_morador, cpf_morador, idade_morador, num_condominio, num_bloco, vaga_estacionamento, dt_cadastro) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
     //connMorador, conn= conexão com BD. Classe usada para conectar Morador e consultar no BD
     public ArrayList<Morador> connMorador(String nome){
@@ -46,7 +45,7 @@ public class MoradorDAO {
                     mor.setNumCondominio(rs.getInt("num_condominio"));
                     mor.setNumBloco(rs.getInt("num_bloco"));
                     mor.setVagaEstacionamento(rs.getBoolean("vaga_estacionamento"));
-                    mor.setDtCadastro(rs.getString("dt_cadastro"));
+                    mor.setDtCadastro(rs.getTimestamp("dt_cadastro"));
                     
                     moradores.add(mor);
                 }
@@ -81,7 +80,7 @@ public class MoradorDAO {
             pState.setInt(4, mor.getNumCondominio());
             pState.setInt(5, mor.getNumBloco());
             pState.setBoolean(6, mor.isVagaEstacionamento());
-            
+            pState.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
             pState.executeUpdate();
             
         } catch (SQLException e) {
