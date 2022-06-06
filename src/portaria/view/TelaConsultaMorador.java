@@ -65,6 +65,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {   //Criação de T
             }
         });
 
+        jTableConsulta.setAutoCreateRowSorter(true);
         jTableConsulta.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTableConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -13,11 +13,6 @@
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/model/Morador.java</file>
             <file>file:/C:/Users/gabri/Desktop/ProjetoPortaria/src/portaria/controller/FuncionarioController.java</file>
         </group>
-        <group>
-            <file>file:/C:/Users/Pichau/Documents/NetBeansProjects/ProjetoPortaria/src/portaria/dao/MoradorDAO.java</file>
-            <file>file:/C:/Users/Pichau/Documents/NetBeansProjects/ProjetoPortaria/src/portaria/view/TelaLogin.java</file>
-            <file>file:/C:/Users/Pichau/Documents/NetBeansProjects/ProjetoPortaria/src/portaria/view/TelaConsultaMorador.java</file>
-            <file>file:/C:/Users/Pichau/Documents/NetBeansProjects/ProjetoPortaria/src/portaria/controller/FuncionarioController.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

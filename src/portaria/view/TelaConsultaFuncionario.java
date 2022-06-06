@@ -57,6 +57,7 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jTableConsulta.setAutoCreateRowSorter(true);
         jTableConsulta.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTableConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
