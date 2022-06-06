@@ -1,27 +1,28 @@
-
+/*
+    TelaCadastroMorador
+        Recebe dados para o cadastro de um novo morador para o Banco de dados
+ */
 package portaria.view;
 
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import portaria.controller.MoradorController;
 
-
 public class TelaCadastroMorador extends javax.swing.JFrame {
 
     private TelaPrincipalADM telaADM;
     private MoradorController morController;
-    
-    
+
+    //Construtores
+    public TelaCadastroMorador() {
+        initComponents();
+    }
+
     public TelaCadastroMorador(TelaPrincipalADM telaADM) {
         this.telaADM = telaADM;
         initComponents();
     }
 
-    public TelaCadastroMorador() {
-        initComponents();
-    }
-
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,12 +56,6 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome");
 
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
-            }
-        });
-
         jLabelCPF.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelCPF.setText("CPF");
 
@@ -69,11 +64,6 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldCPFActionPerformed(evt);
-            }
-        });
 
         jLabelIdade.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelIdade.setText("Idade");
@@ -226,44 +216,36 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        //Recebendo valores para cadastro
         String nome = jTextFieldNome.getText().toUpperCase();
         String cpf = jFormattedTextFieldCPF.getText();
         int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
         int numCondominio = Integer.parseInt(jSpinnerNumCond.getValue().toString());
         int numBloco = Integer.parseInt(jSpinnerNumBloco.getValue().toString());
         boolean usaEst = verificaEst(jComboEstacionamento.getSelectedItem().toString());
-        
-        
+
         boolean sucesso;
-        
-        try{
+
+        //Criação de morador
+        try {
             morController = new MoradorController();
             sucesso = morController.cadastrarMorador(nome, cpf, idade, numCondominio, numBloco, usaEst);
-            
+
             if (sucesso) {
                 JOptionPane.showMessageDialog(null, "Morador Cadastrado Com Sucesso!!");
                 this.jButtonLimparActionPerformed(evt);
             } else {
                 JOptionPane.showMessageDialog(null, "Campos preenchidos incorretamente!", "Erro", JOptionPane.ERROR_MESSAGE);
                 this.jButtonLimparActionPerformed(evt);
-            }   
-            
-        }
-         catch (Exception e) {
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro encontrado, tente novamente " + e);
-        }  
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jFormattedTextFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldCPFActionPerformed
-
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        //Limpa todas as informações escritas
         jTextFieldNome.setText("");
         jFormattedTextFieldCPF.setText("");
         jSpinnerIdade.setModel(new SpinnerNumberModel(16, 16, 90, 1));
@@ -284,12 +266,10 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_abrir_telaConsultaMorador
 
-    
-    private boolean verificaEst (String usaEst){
+    private boolean verificaEst(String usaEst) {
         return usaEst.equals("Sim");
     }
 
-    
     /**
      * @param args the command line arguments
      */

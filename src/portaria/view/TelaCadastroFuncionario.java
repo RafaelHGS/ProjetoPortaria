@@ -1,33 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package portaria.view;
 
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import portaria.controller.FuncionarioController;
 
-/**
- *
- * @author gabri
- */
 public class TelaCadastroFuncionario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaCadastroADM2
-     */
     private FuncionarioController funnController;
-    private TelaPrincipalADM telaPADM;
+    private TelaPrincipalADM telaADM;
     
-    public TelaCadastroFuncionario(TelaPrincipalADM telaPADM) {
-        this.telaPADM = telaPADM;
-        initComponents();
-    }
     
+    //Construtores
     public TelaCadastroFuncionario() {
         initComponents();
     }
+    public TelaCadastroFuncionario(TelaPrincipalADM telaPADM) {
+        this.telaADM = telaPADM;
+        initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,12 +53,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
-
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
-            }
-        });
 
         jLabelEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelEmail.setText("E-mail:");
@@ -107,11 +91,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         jLabelSenha.setText("Senha:");
 
         jComboBoxADM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
-        jComboBoxADM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxADMActionPerformed(evt);
-            }
-        });
 
         jSpinnerIdade.setModel(new javax.swing.SpinnerNumberModel(16, 16, 90, 1));
         jSpinnerIdade.setToolTipText("");
@@ -200,12 +179,14 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        //Cancela ação e volta para tela ADM
         jButtonLimparActionPerformed(evt);
         this.dispose();
-        telaPADM.setVisible(true);
+        telaADM.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
+        //Limpa todos os campos
         jTextFieldNome.setText("");
         jSpinnerIdade.setModel(new SpinnerNumberModel(16, 16, 90, 1) );
         jFormattedTextFieldCPF.setText("");
@@ -214,11 +195,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         jComboBoxADM.setSelectedIndex(0);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Recebendo valores para cadastro
         String nome = jTextFieldNome.getText().toUpperCase();
         int idade = Integer.parseInt(jSpinnerIdade.getValue().toString());
         String cpf = jFormattedTextFieldCPF.getText();
@@ -228,6 +207,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         
         boolean sucesso;
         
+        //Criação de Funcionário
         try {
             funnController = new FuncionarioController();
             sucesso = funnController.cadastrarFuncionario(nome, idade, cpf, email, senha, isADM);
@@ -249,10 +229,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro encontrado, tente novamente " + e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBoxADMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxADMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxADMActionPerformed
 
     private boolean verificaADM (String isADM) {
         return isADM.equals("Sim");

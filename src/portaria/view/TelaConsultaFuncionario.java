@@ -1,3 +1,8 @@
+/*
+    TelaConsultaFuncionário
+        Responsável pelas funcionalidades de consulta de funcionário.
+        Entre eles, a busca de todos os funcionários, a busca de funcionario por um filtro de caracteres
+ */
 package portaria.view;
 
 import java.util.ArrayList;
@@ -7,25 +12,17 @@ import portaria.controller.FuncionarioController;
 import portaria.model.Funcionario;
 
 public class TelaConsultaFuncionario extends javax.swing.JFrame {
-
-    private TelaCadastroFuncionario telaCadastroFuncionario;
-
     private FuncionarioController funcController;
-
     private ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private TelaPrincipalADM telaADM;
 
+    //Construtores
     public TelaConsultaFuncionario() {
         initComponents();
     }
 
     public TelaConsultaFuncionario(TelaPrincipalADM telaADM) {
         this.telaADM = telaADM;
-        initComponents();
-    }
-
-    public TelaConsultaFuncionario(TelaCadastroFuncionario telaCadastroFuncionario) {
-        this.telaCadastroFuncionario = telaCadastroFuncionario;
         initComponents();
     }
 
@@ -51,12 +48,6 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
         jLabelNome.setToolTipText("Insira o nome ");
-
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
-            }
-        });
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonConsultar.setText("Consultar");
@@ -158,27 +149,37 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFuncionario
+        //Consulta de Funcionário
         funcController = new FuncionarioController(this);
 
-        //Realizando escrita na tabela de consulta
+        //Realizando escrita de resultados na tabela da aplicação
         try {
-            //Recebendo Dados
+            //Recebendo Dados para consulta
             ArrayList<Funcionario> listaTabela = funcController.consulFuncionario(jTextFieldNome.getText().toUpperCase());
 
-            //Obtendo tabela e zerando
+            //Definindo a tabela e zerando tabela anterior
             DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
             dadosTabela.setRowCount(0);
 
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
-                for (Funcionario func : listaTabela) {
+                for (Funcionario func : listaTabela) {      //Recebendo Objetos para escrita na tabela
+                    //Reescrevendo valores do Objeto
+                    String isADM;
+                    if (func.getIsADM()) {
+                        isADM = "Sim";
+                    } else {
+                        isADM = "Não";
+                    }
+                    
+                    //Escrevendo dados na tabela
                     dadosTabela.addRow(new Object[]{
                         func.getId(),
                         func.getNome(),
                         func.getCPF(),
                         func.getIdade(),
                         func.getEmail(),
-                        func.getIsADM()});
+                        isADM});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Funcionário não encontrado :)");
@@ -190,42 +191,48 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consultarFuncionario
 
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
     private void jButtonSairconsultarFuncionario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairconsultarFuncionario
+        //Voltando par a a tela principal da aplicação
         this.dispose();
         telaADM.setVisible(true);
-
     }//GEN-LAST:event_jButtonSairconsultarFuncionario
 
+    //Exclusão de funcionário, Funciona apenas para Adm's
     private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
         if (evt.getClickCount() == 2) {
-            int idFuncionario = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
-
-            boolean sucesso;
+            //Recebendo morador da tabela
             
-            try {
-                Object[] opcoes = {"Sim", "Não"};
-                int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o Funcionário ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
+            //Verificando se funcionário é ADM, se for, não é possível excluí-lo
+            String isADM = (String) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 5);
+            
+            //Se não é adm, a exclusão toma continuidade
+            if(isADM != "Sim"){
+                int idFuncionario = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
 
-                if (opcao == 0) {
-                    funcController = new FuncionarioController();
-                    sucesso = funcController.excluirFuncionario(idFuncionario);
+                boolean sucesso;
 
-                    if (sucesso) {
-                        JOptionPane.showMessageDialog(null, "Funcionário Exluído com Sucesso");
-                        DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
-                        dadosTabela.setRowCount(0);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
+                try {
+                    //Confirmação para exclusão de funcionário
+                    Object[] opcoes = {"Sim", "Não"};
+                    int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o Funcionário ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
 
+                    //Se a opção for "Sim", o funcionário selecionado na tabela será excluído
+                    if (opcao == 0) {
+                        funcController = new FuncionarioController();
+                        sucesso = funcController.excluirFuncionario(idFuncionario);
+
+                        if (sucesso) {
+                            JOptionPane.showMessageDialog(null, "Funcionário Exluído com Sucesso");
+                            DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
+                            dadosTabela.setRowCount(0);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao Deletar Funcionário!", "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Erro ao Deletar Funcionário!", "Erro", JOptionPane.ERROR_MESSAGE);
 
+                }
             }
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked

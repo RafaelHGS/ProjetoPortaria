@@ -1,11 +1,10 @@
+//Comunicação com banco de dados, registro, consulta e exclusão, focados no Funcionário
+
 package portaria.dao;
 
 import portaria.model.Funcionario;
-import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.ArrayList;
-import portaria.view.TelaPrincipalADM;
-
 
 public class FuncionarioDAO {
 
@@ -42,13 +41,15 @@ public class FuncionarioDAO {
                     //Verificando se é ADM
                     funn.setIsADM(rs.getBoolean("is_adm"));
                     if (funn.getIsADM() == true) {
+                        connDAO.close();
                         return 1;
                     } else if (funn.getIsADM() == false) {
+                        connDAO.close();
                         return 0;
                     }
                 }
             }
-
+            connDAO.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,6 +71,8 @@ public class FuncionarioDAO {
             pState.setString(5, funn.getSenha());
             pState.setBoolean(6, funn.getIsADM());
             pState.executeUpdate();
+            
+            connDAO.close();
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,6 +106,7 @@ public class FuncionarioDAO {
                 }
             }
             
+            connDAO.close();
             if(funcionarios.size() <= 0){
                 return null;
             }

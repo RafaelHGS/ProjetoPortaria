@@ -1,15 +1,11 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+    Criação de dados/objeto que é a representação de morador
+*/
+
+
 package portaria.model;
 
 import java.sql.*;
-/**
- *
- * @author Pichau
- *
- */
 public class Morador extends Pessoa {
 
     private int numCondominio;
@@ -49,6 +45,7 @@ public class Morador extends Pessoa {
         this.dtCadastro = dtCadastro;
     }
     
+    //Construtores
     public Morador() {
     }
 

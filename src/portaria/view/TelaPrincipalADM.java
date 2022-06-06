@@ -1,20 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+    TelaPrincipalADM
+        É responsável pela gestão de todas as funcionalidades que o Administrador tem.
+        Entre eles o cadastro de funcionário/morador, consulta e exclusão do mesmo.
+*/
+
 package portaria.view;
 
-/**
- *
- * @author gabri
- */
 public class TelaPrincipalADM extends javax.swing.JFrame {
-
     private TelaCadastroFuncionario telaFunc;
     private TelaCadastroMorador telaMor;
     private TelaConsultaFuncionario telaCFun;
     private TelaConsultaMorador telaCMor;
-    
+
     public TelaPrincipalADM() {
         initComponents();
     }
@@ -148,30 +145,30 @@ public class TelaPrincipalADM extends javax.swing.JFrame {
 
     private void jButtonConsMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsMoradorActionPerformed
         this.dispose();
-        telaCMor = new TelaConsultaMorador(this, true);
+        telaCMor = new TelaConsultaMorador(this, true);     //Chamando tela de consulta de morador
         telaCMor.setVisible(true);
     }//GEN-LAST:event_jButtonConsMoradorActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-      System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonCadFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadFuncionarioActionPerformed
         this.dispose();
-        telaFunc = new TelaCadastroFuncionario(this);
+        telaFunc = new TelaCadastroFuncionario(this);       //Chamando tela de Cadastro de Funcionário
         telaFunc.setVisible(true);
-        
+
     }//GEN-LAST:event_jButtonCadFuncionarioActionPerformed
 
     private void jButtonCadMorador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadMorador1ActionPerformed
         this.dispose();
-        telaMor = new TelaCadastroMorador(this);
+        telaMor = new TelaCadastroMorador(this);            //Chamando tela de Cadastro de morador
         telaMor.setVisible(true);
     }//GEN-LAST:event_jButtonCadMorador1ActionPerformed
 
     private void jButtonConsFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsFuncActionPerformed
         this.dispose();
-        telaCFun = new TelaConsultaFuncionario(this);
+        telaCFun = new TelaConsultaFuncionario(this);       //Chamando tela de Consulta de Funcionário
         telaCFun.setVisible(true);
     }//GEN-LAST:event_jButtonConsFuncActionPerformed
 

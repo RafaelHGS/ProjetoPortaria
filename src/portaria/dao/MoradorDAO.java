@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+//Comunicação com banco de dados, registro, consulta e exclusão, focados no Morador
+
 package portaria.dao;
 
 import portaria.model.Morador;
 import java.sql.*;
 import java.util.ArrayList;
 
-
-/**
- *
- * @author Pichau
- */
 public class MoradorDAO {
+
     private ConexaoDAO connDAO;
     private Connection conn;
     private ArrayList<Morador> moradores = new ArrayList<Morador>();
@@ -22,7 +16,7 @@ public class MoradorDAO {
     private final String EXCLUIR_MORADOR = "DELETE FROM morador WHERE id_morador = ?";
 
     //connMorador, conn= conexão com BD. Classe usada para conectar Morador e consultar no BD
-    public ArrayList<Morador> connMorador(String nome){
+    public ArrayList<Morador> consultarMorador(String nome) {
         try {
             //Chamando conexão
             connDAO = new ConexaoDAO();
@@ -30,14 +24,14 @@ public class MoradorDAO {
 
             //Fazendo consulta no BD
             PreparedStatement PState = conn.prepareStatement(AUT_SQL);
-            PState.setString(1, "%"+nome+"%");   //Pesquisando/consultando por nome
-            
+            PState.setString(1, "%" + nome + "%");   //Pesquisando/consultando por nome
+
             //Resultado da Consulta no BD
             ResultSet rs = PState.executeQuery();
-            
+
             //Verificando item da tabela do BD, se Existe
-            while(rs.next()){
-                if(rs.getString("nome_morador").contains(nome)){
+            while (rs.next()) {
+                if (rs.getString("nome_morador").contains(nome)) {
                     Morador mor = new Morador();
                     mor.setId(rs.getInt("id_morador"));
                     mor.setNome(rs.getString("nome_morador"));
@@ -47,33 +41,31 @@ public class MoradorDAO {
                     mor.setNumBloco(rs.getInt("num_bloco"));
                     mor.setVagaEstacionamento(rs.getBoolean("vaga_estacionamento"));
                     mor.setDtCadastro(rs.getTimestamp("dt_cadastro"));
-                    
+
                     moradores.add(mor);
                 }
             }
-            
-            if(moradores.size() <= 0){
+
+            connDAO.close(); //Encerrar conexão com BD
+
+            if (moradores.size() <= 0) {
                 return null;
-            }
-            else{
+            } else {
                 return moradores;
             }
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    
-    
+
     public void cadastrarMorador(Morador mor) {
         try {
             //Chamando conexão
             connDAO = new ConexaoDAO();
             conn = connDAO.conectar();
-            
+
             //nome, CPF, idade, numCondominio, numBloco, vagaEstacionamento
-            
             PreparedStatement pState = conn.prepareStatement(CADASTRAR_MORADOR);
             pState.setString(1, mor.getNome());
             pState.setString(2, mor.getCPF());
@@ -83,28 +75,31 @@ public class MoradorDAO {
             pState.setBoolean(6, mor.isVagaEstacionamento());
             pState.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
             pState.executeUpdate();
-            
+
+            connDAO.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public boolean excluirMorador(int idMorador){
+
+    public boolean excluirMorador(int idMorador) {
         try {
             //Chamando conexão
             connDAO = new ConexaoDAO();
             conn = connDAO.conectar();
-        
+
             PreparedStatement pState = conn.prepareStatement(EXCLUIR_MORADOR);
             pState.setInt(1, idMorador);
             pState.executeUpdate();
-            
+
+            connDAO.close();
             return true;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
-    
+
 }

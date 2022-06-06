@@ -1,18 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+    Tela Login
+        Tela responsável pela Captura de informações para login (entrada) dos funcionários/ADM's dentro do Sistema
+*/
+
+
 package portaria.view;
 
 import portaria.controller.FuncionarioController;
 
-/**
- *
- * @author gabri
- */
-
-public class TelaLogin extends javax.swing.JFrame {
-
+public class TelaLogin extends javax.swing.JFrame {         //Criando tela de login inicial
     private TelaPrincipalADM telaPADM;
     private FuncionarioController funnController;
     
@@ -20,8 +16,6 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
     }
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,11 +44,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jTextFieldEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextFieldEmail.setToolTipText("Insira o e-mail");
-        jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEmailActionPerformed(evt);
-            }
-        });
 
         jLabelSenha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabelSenha.setText("Insira a Senha");
@@ -126,15 +115,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-
+        //Autenticação e login de Funcionário
         funnController = new FuncionarioController(this);
         funnController.autFuncionario(jTextFieldEmail.getText(), new String(jPasswordField.getPassword()));
-        
     }//GEN-LAST:event_jButtonAcessarActionPerformed
-
-    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         System.exit(0);

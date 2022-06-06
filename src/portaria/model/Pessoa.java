@@ -1,26 +1,24 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+    Contrução base de Objeto/Classe Pessoa, são onde ficam os dados básicos para funcionário e morador
  */
 package portaria.model;
 
-/**
- *
- * @author Pichau
- */
 public class Pessoa {
+
     private String nome, CPF;
     private int idade, id;
-    
-    public Pessoa(){}
-    
-    public Pessoa(String nome, String CPF, int idade){
+
+    //Construtores
+    public Pessoa() {
+    }
+
+    public Pessoa(String nome, String CPF, int idade) {
         this.nome = nome;
         this.CPF = CPF;
         this.idade = idade;
     }
-    
-    public Pessoa(String nome, String CPF, int idade, int id){
+
+    public Pessoa(String nome, String CPF, int idade, int id) {
         this.nome = nome;
         this.CPF = CPF;
         this.idade = idade;
@@ -58,5 +56,4 @@ public class Pessoa {
         this.id = id;
     }
 
-    
 }

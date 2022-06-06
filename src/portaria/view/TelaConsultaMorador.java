@@ -1,3 +1,8 @@
+/*
+    TelaConsultaMorador
+        Responsável pelas funcionalidades de consulta de morador.
+        Entre eles, a busca de todos os moradores, a busca de moradores por um filtro de caracteres
+ */ 
 package portaria.view;
 
 import java.text.SimpleDateFormat;
@@ -7,15 +12,15 @@ import javax.swing.table.DefaultTableModel;
 import portaria.controller.MoradorController;
 import portaria.model.Morador;
 
-public class TelaConsultaMorador extends javax.swing.JFrame {
+public class TelaConsultaMorador extends javax.swing.JFrame {   //Criação de Tela
 
     private MoradorController morController;
-    private TelaCadastroMorador telaCadastroMorador;
     private TelaPrincipalADM telaADM;
     private boolean isADM;
 
     private static final SimpleDateFormat dateFormatBR = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+    //Construtores
     public TelaConsultaMorador() {
         initComponents();
     }
@@ -51,12 +56,6 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabelNome.setText("Nome:");
         jLabelNome.setToolTipText("Insira o nome do morador");
-
-        jNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNomeActionPerformed(evt);
-            }
-        });
 
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonConsultar.setText("Consultar");
@@ -179,30 +178,37 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void consultarMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarMorador
-
+        //Consulta de Morador
         morController = new MoradorController(this);
 
-        //Realizando escrita na tabela de consulta
+        //Realizando escrita de resultados na tabela da aplicação
         try {
-            //Recebendo Dados
-            ArrayList<Morador> listaTabela = morController.consulMorador(jNome.getText().toUpperCase());
+            //Recebendo Dados para consulta
+            ArrayList<Morador> listaTabela = morController.consultarMorador(jNome.getText().toUpperCase());
 
-            //Obtendo tabela e zerando
+            //Definindo a tabela e zerando tabela anterior
             DefaultTableModel dadosTabela = (DefaultTableModel) jTableConsulta.getModel();   //Obtendo Tabela
             dadosTabela.setRowCount(0);
 
             //Escrevendo Dados na tabela
             if (listaTabela != null) {
-                for (Morador mor : listaTabela) {
+                for (Morador mor : listaTabela) {       //Recebendo Objetos para escrita na tabela
+                    //Reescrevendo valores do Objeto
+                    String vagaEst;
+                    if (mor.isVagaEstacionamento()) {
+                        vagaEst = "Sim";
+                    } else {
+                        vagaEst = "Não";
+                    }
 
-                    dadosTabela.addRow(new Object[]{
+                    dadosTabela.addRow(new Object[]{ //Escrevendo dados na tabela
                         mor.getId(),
                         mor.getNome(),
                         mor.getCPF(),
                         mor.getIdade(),
                         mor.getNumCondominio(),
                         mor.getNumBloco(),
-                        mor.isVagaEstacionamento(),
+                        vagaEst,
                         dateFormatBR.format(mor.getDtCadastro())});
                 }
             } else {
@@ -217,11 +223,9 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_consultarMorador
 
-    private void jNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNomeActionPerformed
-
+    //Saindo da Aplicação, ou, voltando para tela anterior
     private void jButtonSairMorador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairMorador
+        //Se Administrador, ele volta para a tela principal, Senão Ele pergunta ao funcionário se ele deseja encerrar a aplicação
         if (this.isADM == true) {
             this.dispose();
             telaADM.setVisible(true);
@@ -235,16 +239,21 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSairMorador
 
+    //Exclusão de morador, Funciona apenas para Adm's
     private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
         if (this.isADM == true) {
             if (evt.getClickCount() == 2) {
+                //Recebendo morador da tabela
                 int idMorador = (int) jTableConsulta.getModel().getValueAt(jTableConsulta.getSelectedRow(), 0);
 
                 boolean sucesso;
+
                 try {
+                    //Confirmação para exclusão de morador
                     Object[] opcoes = {"Sim", "Não"};
                     int opcao = JOptionPane.showOptionDialog(null, "Deseja Excluir o morador ?", "Exclusão", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, opcoes, opcoes[1]);
 
+                    //Se a opção for "Sim", o morador selecionado na tabela será excluído
                     if (opcao == 0) {
                         morController = new MoradorController();
                         sucesso = morController.excluirMorador(idMorador);
@@ -255,7 +264,6 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
                             dadosTabela.setRowCount(0);
                         } else {
                             JOptionPane.showMessageDialog(null, "Não foi possível efetuar a Exclusão!", "Erro", JOptionPane.ERROR_MESSAGE);
-
                         }
                     }
                 } catch (Exception e) {
@@ -266,6 +274,7 @@ public class TelaConsultaMorador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked
 
+    //Limpa campos de escrita
     public void limpaCampos() {
         jNome.setText("");
         jNome.grabFocus();
