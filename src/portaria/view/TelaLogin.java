@@ -1,21 +1,27 @@
 /*
     Tela Login
         Tela responsável pela Captura de informações para login (entrada) dos funcionários/ADM's dentro do Sistema
-*/
-
-
+ */
 package portaria.view;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import portaria.controller.FuncionarioController;
 
 public class TelaLogin extends javax.swing.JFrame {         //Criando tela de login inicial
+
     private TelaPrincipalADM telaPADM;
     private FuncionarioController funnController;
-    
+
     public TelaLogin() {
         initComponents();
+        JOptionPane.showMessageDialog(null, "Trabalho feito por: \n "
+                + "Gabriel de Souza Alves, RA:125111362378 \n"
+                + "João Lucas de Souza Yonéa, RA:125111356003 \n"
+                + "Rafael Henrique Gonçalves Soares, RA:125111374176 \n"
+                + "Roberta Ferreira Duprat, RA:125111345409");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +63,11 @@ public class TelaLogin extends javax.swing.JFrame {         //Criando tela de lo
         });
 
         jPasswordField.setToolTipText("Insira a senha");
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
+            }
+        });
 
         jButtonSair.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonSair.setText("Sair");
@@ -116,23 +127,33 @@ public class TelaLogin extends javax.swing.JFrame {         //Criando tela de lo
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
         //Autenticação e login de Funcionário
-        funnController = new FuncionarioController(this);
-        funnController.autFuncionario(jTextFieldEmail.getText(), new String(jPasswordField.getPassword()));
+        try {
+
+            funnController = new FuncionarioController(this);
+            funnController.autFuncionario(jTextFieldEmail.getText(), new String(jPasswordField.getPassword()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível acessar!", "Erro", JOptionPane.ERROR_MESSAGE);
+            limpaCampos();
+    }
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    
-    public void limpaCampos(){
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jButtonAcessar.doClick();
+            limpaCampos();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
+
+    public void limpaCampos() {
         jTextFieldEmail.setText("");
-        jTextFieldEmail.grabFocus(); 
-        
+        jTextFieldEmail.grabFocus();
         jPasswordField.setText("");
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -147,16 +168,28 @@ public class TelaLogin extends javax.swing.JFrame {         //Criando tela de lo
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaLogin.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -167,7 +200,7 @@ public class TelaLogin extends javax.swing.JFrame {         //Criando tela de lo
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcessar;
     private javax.swing.JButton jButtonSair;

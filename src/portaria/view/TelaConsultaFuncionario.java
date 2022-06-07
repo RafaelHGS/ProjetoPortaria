@@ -49,6 +49,12 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         jLabelNome.setText("Nome:");
         jLabelNome.setToolTipText("Insira o nome ");
 
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
+        });
+
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonConsultar.setText("Consultar");
         jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +244,12 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked
 
-    
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            jButtonConsultar.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
 public void limpaCampos() {
         jTextFieldNome.setText("");
         jTextFieldNome.grabFocus();
@@ -251,7 +262,6 @@ public void limpaCampos() {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultar;
     private javax.swing.JButton jButtonSair;

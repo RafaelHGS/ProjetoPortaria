@@ -57,6 +57,12 @@ public class TelaConsultaMorador extends javax.swing.JFrame {   //Criação de T
         jLabelNome.setText("Nome:");
         jLabelNome.setToolTipText("Insira o nome do morador");
 
+        jNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jNomeKeyPressed(evt);
+            }
+        });
+
         jButtonConsultar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonConsultar.setText("Consultar");
         jButtonConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -274,6 +280,12 @@ public class TelaConsultaMorador extends javax.swing.JFrame {   //Criação de T
             }
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked
+
+    private void jNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNomeKeyPressed
+        if (evt.getKeyCode() == evt.VK_ENTER){
+            jButtonConsultar.doClick();
+        }
+    }//GEN-LAST:event_jNomeKeyPressed
 
     //Limpa campos de escrita
     public void limpaCampos() {

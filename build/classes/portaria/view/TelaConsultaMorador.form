@@ -126,6 +126,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jNome">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jNomeKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonConsultar">
           <Properties>
