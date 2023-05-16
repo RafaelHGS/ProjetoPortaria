@@ -47,7 +47,6 @@ public class FuncionarioController {
             int resultado = funnDAO.connFuncionario(funn);
 
             ExibirTela(resultado);  //Exibição de tela de acordo com tipo de funcionário
-
         } else {
             JOptionPane.showMessageDialog(null, "Campos Inválidas", "Erro", JOptionPane.ERROR_MESSAGE);
             telaL.limpaCampos();
@@ -134,4 +133,5 @@ public class FuncionarioController {
         }
         return true;
     }
+
 }

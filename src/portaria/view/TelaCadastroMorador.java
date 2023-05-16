@@ -50,7 +50,6 @@ public class TelaCadastroMorador extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/porteiro.png"))); // NOI18N
         jLabel1.setText("Cadastrar de Morador");
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N

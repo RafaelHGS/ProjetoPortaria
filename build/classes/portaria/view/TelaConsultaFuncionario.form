@@ -77,9 +77,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="24" style="1"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/porteiro.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Consulta de funcion&#xe1;rio"/>
       </Properties>
     </Component>

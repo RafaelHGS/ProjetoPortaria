@@ -42,7 +42,6 @@ public class TelaConsultaFuncionario extends javax.swing.JFrame {
         setTitle("Consulta de funcionario");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/porteiro.png"))); // NOI18N
         jLabel1.setText("Consulta de funcionário");
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N

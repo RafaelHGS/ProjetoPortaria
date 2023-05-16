@@ -50,7 +50,6 @@ public class TelaConsultaMorador extends javax.swing.JFrame {   //Criação de T
         jPanelConsulta.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/porteiro.png"))); // NOI18N
         jLabel1.setText("Consulta de morador");
 
         jLabelNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
